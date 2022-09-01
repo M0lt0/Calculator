@@ -1,0 +1,110 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: #f0ffff;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.calculator-body {
+  display: flex;
+  flex-direction: column;
+  width: 40vw;
+  height: 80vh;
+  border-radius: 8px;
+  background: rgba(87, 9, 160, 0.596);
+  border: 2px solid rgb(192, 192, 192);
+}
+
+.display {
+  background: rgb(204, 204, 204);
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  margin-top: 10px;
+  height: 20%;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.pad {
+  display: flex;
+  height: 75%;
+  width: 100%;
+}
+.numbers {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  margin-top: 5px;
+  gap: 2px;
+  padding: 2px;
+}
+.rest {
+  width: 304%;
+}
+.numbers .n,
+.numbers .o,
+.numbers .options,
+.numbers .mod {
+  display: flex;
+  color: rgb(255, 255, 255);
+  border: 1px solid rgb(177, 176, 176);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-shadow: none;
+  border-radius: 8px;
+  background: rgb(179, 157, 157);
+}
+.numbers .n:hover,
+.numbers .options:hover,
+.numbers .operators:hover {
+  background-color: bisque;
+  color: black;
+  transition: 300ms ease-in-out;
+}
+/* .operators {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+} */
+
+/* .operators div {
+  display: flex;
+  border: 1px solid rgb(177, 176, 176);
+  width: 100%;
+  height: 25%;
+  align-items: center;
+  justify-content: center;
+} */
+
+/* .options {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  height: 10%;
+  cursor: pointer;
+  margin-top: 4px;
+  gap: 2px;
+  padding: 2px;
+} */
+/* .options div {
+  border: 1px solid rgb(177, 176, 176);
+  display: flex;
+  height: 75%;
+  width: 30%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+} */
