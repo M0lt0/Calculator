@@ -51,8 +51,7 @@ operations.forEach((item) => {
 });
 
 restAll.addEventListener("click", () => {
-  let removable = display.querySelectorAll(".number");
-  removable.remove();
+  display.innerHTML = "";
 });
 
 outPut.addEventListener("click", () => {
