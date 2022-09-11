@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
     <script src="./app.js" defer></script>
-    <script src="https://kit.fontawesome.com/c158281da9.js" crossorigin="anonymous" defer></script>
     <title>calculator</title>
 </head>
 
 <body>
     <div class="calculator-body">
-        <div class="display"></div>
+        <div class="display display-prev">0</div>
+        <div class="display display-curnt">0</div>
         <div class="pad">
             <div class="numbers">
-                <button class="o add operators"><i class="fa-solid fa-plus"></i></button>
-                <button class="o subtract operators "><i class="fa-solid fa-minus"></i></button>
-                <button class="o multiply operators"><i class="fa-solid fa-xmark"></i></button>
-                <button class="o division operators"><i class="fa-solid fa-divide"></i></button>
-                <button class="mod operators">%</button>
+                <button class="o add operators" data-action="add">+</button>
+                <button class="o subtract operators" data-action="subtract">-</button>
+                <button class="o multiply operators" data-action="multiply">x</button>
+                <button class="o division operators" data-action="division">&#247</button>
+                <button class="o mod operators" data-action="mod">%</button>
                 <button class="n">1</button>
                 <button class="n">2</button>
                 <button class="n">3</button>
@@ -31,14 +31,12 @@
                 <button class="n">8</button>
                 <button class="n">9</button>
                 <button class="n">0</button>
-                <button class="n">.</button>
-                <button class="output options">=</button>
-                <button class="rest options">AC</button>
+                <button class="n" data-action="decimal">.</button>
+                <button class="output options" data-action="calculate">=</button>
+                <button class="rest options" data-action="clear">AC</button>
             </div>
-
         </div>
     </div>
-
 </body>
 
 </html>

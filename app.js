@@ -1,83 +1,110 @@
 const display = document.querySelector(".display");
-const numbers = document.querySelectorAll(".n");
-const operations = document.querySelectorAll(".o");
-const outPut = document.querySelector(".output");
+const keys = document.querySelector(".numbers");
 const restAll = document.querySelector(".rest");
-const adding = document.querySelector(".add");
-const subtracting = document.querySelector(".subtract");
-const multiplying = document.querySelector(".multiply");
-const envisioning = document.querySelector(".division");
-const operationStack = [];
-//functionality
-const add = function (i, j) {
-  return i + j;
-};
-const subtract = function (i, j) {
-  return i - j;
-};
-const multiply = function (i, j) {
-  return i * j;
-};
-const divide = function (i, j) {
-  return i / j;
-};
-
-const operate = function (o, n, m) {
-  return n(o)(m);
-};
-const restDisplay = function () {};
-//dom operation
-numbers.forEach((item) => {
-  item.addEventListener("click", () => {
-    let newNumber = document.createElement("div");
-    newNumber.classList.add("number");
-    newNumber.style.letterSpacing = "2px";
-    newNumber.style.marginLeft = "4px";
-    newNumber.textContent = item.textContent;
-    operationStack.push(newNumber.textContent);
-    display.append(newNumber);
-  });
+const equals = document.querySelector(".output");
+let prev = document.querySelector(".display-prev");
+let crnt = document.querySelector(".display-curnt");
+let previousOperation = undefined;
+//checking for numbers:
+keys.addEventListener("click", (e) => {
+  if (e.target.matches("button") && !e.target.dataset.action) {
+    if (crnt.textContent == "0") {
+      crnt.textContent = e.target.textContent;
+    } else {
+      crnt.textContent += e.target.textContent;
+    }
+  }
+});
+//operations
+keys.addEventListener("click", (e) => {
+  if (
+    e.target.matches("button") &&
+    e.target.dataset.action &&
+    display.textContent !== 0
+  ) {
+    previousOperation = e.target.dataset.action;
+    if (prev.textContent == "0") {
+      prev.textContent = crnt.textContent;
+      crnt.textContent = "0";
+    } else {
+      if (e.target.dataset.action == "add") {
+        previousOperation = "add";
+        prev.textContent =
+          parseFloat(crnt.textContent) + parseFloat(prev.textContent);
+        crnt.textContent = "0";
+      } else if (e.target.dataset.action == "subtract") {
+        previousOperation = "subtract";
+        prev.textContent =
+          parseFloat(crnt.textContent) - parseFloat(prev.textContent);
+        crnt.textContent = "0";
+      } else if (e.target.dataset.action == "multiply") {
+        previousOperation = "multiply";
+        prev.textContent =
+          parseFloat(crnt.textContent) * parseFloat(prev.textContent);
+        crnt.textContent = "0";
+      } else if (
+        e.target.dataset.action == "division" &&
+        crnt.textContent !== "0"
+      ) {
+        previousOperation = "division";
+        prev.textContent =
+          parseFloat(crnt.textContent) / parseFloat(prev.textContent);
+        crnt.textContent = "0";
+      } else if (e.target.dataset.action == "mod") {
+        previousOperation = "mod";
+        prev.textContent =
+          parseFloat(crnt.textContent) % parseFloat(prev.textContent);
+        crnt.textContent = "0";
+      }
+    }
+  }
 });
 
-operations.forEach((item) => {
-  item.addEventListener("click", () => {
-    let operate = document.createElement("div");
-    operate.style.letterSpacing = "2px";
-    operate.style.marginLeft = "4px";
-    operate.textContent = item.textContent;
-    operationStack.push(operate.textContent);
-    display.append(operate);
-  });
+//result
+equals.addEventListener("click", (e) => {
+  if (
+    e.target.matches("button") &&
+    e.target.dataset.action == "calculate" &&
+    prev.textContent !== "0" &&
+    crnt.textContent !== "0"
+  ) {
+    calculate();
+  } else {
+    alert("no numbers to calculate");
+  }
 });
+
+function calculate() {
+  if (previousOperation !== undefined) {
+    if (previousOperation === "add") {
+      prev.textContent =
+        parseFloat(crnt.textContent) + parseFloat(prev.textContent);
+      crnt.textContent = "0";
+    } else if (previousOperation === "subtract") {
+      prev.textContent =
+        parseFloat(crnt.textContent) - parseFloat(prev.textContent);
+      crnt.textContent = "0";
+    } else if (previousOperation === "multiply") {
+      prev.textContent =
+        parseFloat(crnt.textContent) * parseFloat(prev.textContent);
+      crnt.textContent = "0";
+    } else if (previousOperation === "division") {
+      prev.textContent =
+        parseFloat(crnt.textContent) / parseFloat(prev.textContent);
+      crnt.textContent = "0";
+    } else if (previousOperation === "mod") {
+      prev.textContent =
+        parseFloat(crnt.textContent) % parseFloat(prev.textContent);
+      crnt.textContent = "0";
+    }
+  }
+}
 
 restAll.addEventListener("click", () => {
-  display.innerHTML = "";
+  crnt.textContent = "0";
+  prev.textContent = "0";
+  previousOperation = undefined;
 });
-
-outPut.addEventListener("click", () => {
-  if (operationStack.length == 0) {
-    let errorMessage = document.createElement("div");
-    errorMessage.textContent = "kos omk ya ahbl";
-    display.append(errorMessage);
-  } else {
-    let added = document.createElement("div");
-    added.textContent = add(
-      Number(operationStack[0]),
-      Number(operationStack[1])
-    );
-    display.innerHTML = "";
-    display.append(added);
-  }
-});
-
-window.addEventListener("click", () => {
-  console.log(operationStack);
-});
-
-adding.addEventListener("click", () => {
-  if (operationStack.length == 0) {
-    let errorMessage = document.createElement("div");
-    errorMessage.textContent = "kos omk tany";
-    display.append(errorMessage.textContent);
-  }
+document.addEventListener("click", () => {
+  console.log(previousOperation);
 });

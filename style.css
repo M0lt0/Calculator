@@ -2,32 +2,40 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background: #f0ffff;
+  background: rgb(65, 65, 65);
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 25px;
 }
 .calculator-body {
   display: flex;
   flex-direction: column;
-  width: 40vw;
-  height: 80vh;
+  width: 42vw;
+  height: 70vh;
   border-radius: 8px;
-  background: rgba(87, 9, 160, 0.596);
+  background: rgb(174, 146, 19);
   border: 2px solid rgb(192, 192, 192);
+  align-items: center;
 }
 
 .display {
   background: rgb(204, 204, 204);
   display: flex;
-  align-items: center;
-  justify-content: start;
+  align-items: flex-start;
+  justify-content: center;
   margin-top: 10px;
-  height: 20%;
-  width: 100%;
-  flex-direction: row;
+  height: 10%;
+  width: 95%;
+  flex-direction: column;
   flex-wrap: wrap;
+  text-align: left;
+}
+.display-prev,
+.display-curnt {
+  border: 2px solid black;
+  text-indent: 8px;
 }
 .pad {
   display: flex;
@@ -44,8 +52,9 @@ body {
   gap: 2px;
   padding: 2px;
 }
-.rest {
-  width: 304%;
+.rest,
+.output {
+  grid-column: span 2;
 }
 .numbers .n,
 .numbers .o,
@@ -59,7 +68,8 @@ body {
   cursor: pointer;
   text-shadow: none;
   border-radius: 8px;
-  background: rgb(179, 157, 157);
+  background: rgb(183, 28, 28);
+  font-size: 20px;
 }
 .numbers .n:hover,
 .numbers .options:hover,
@@ -68,38 +78,29 @@ body {
   color: black;
   transition: 300ms ease-in-out;
 }
-/* .operators {
+.active {
+  background-color: bisque;
+  color: black;
+}
+.operators {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   color: white;
-} */
+}
 
-/* .operators div {
+.operators div {
   display: flex;
   border: 1px solid rgb(177, 176, 176);
   width: 100%;
   height: 25%;
   align-items: center;
   justify-content: center;
-} */
+}
 
-/* .options {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  color: white;
-  justify-content: center;
-  align-items: center;
-  height: 10%;
-  cursor: pointer;
-  margin-top: 4px;
-  gap: 2px;
-  padding: 2px;
-} */
-/* .options div {
+.options div {
   border: 1px solid rgb(177, 176, 176);
   display: flex;
   height: 75%;
@@ -107,4 +108,4 @@ body {
   align-items: center;
   justify-content: center;
   border-radius: 8px;
-} */
+}
